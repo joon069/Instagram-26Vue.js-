@@ -1,5 +1,5 @@
 //Post.js
-export default[
+export default [
   {
     name: "Kim Hyun",
     userImage: "https://picsum.photos/100?random=3",

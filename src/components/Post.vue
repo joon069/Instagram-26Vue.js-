@@ -1,35 +1,39 @@
-//Post.vue
 <template>
-  <div v-if="postlist" class="post">
+  <div class="post">
     <div class="post-header">
-      <div
-        class="profile"
-        :style="{ backgroundImage: `url(${postlist.userImage})` }"
-      ></div>
-      <span class="profile-name">{{ postlist.name }}</span>
+      <div class="profile" :style="{ backgroundImage: `url(${post.userImage})` }"></div>
+      <span class="profile-name">{{ post.name }}</span>
     </div>
-
-    <div
-      class="post-body"
-      :class="postlist.filter"
-      :style="{ backgroundImage: `url(${postlist.postImage})` }"
-    ></div>
-
+    <div class="post-body">
+      <div
+        class="post-image"
+        :class="post.filter"
+        :style="{ backgroundImage: `url(${post.postImage})` }"
+        @click="좋아요토글(index)"
+      ></div>
+    </div>
     <div class="post-content">
-      <p>{{ postlist.likes }} Likes</p>
+      <p>{{ post.likes }} Likes</p>
       <p>
-        <strong>{{ postlist.name }}</strong> {{ postlist.content }}
+        <strong>{{ post.name }}</strong>
+        {{ post.content }}
       </p>
-      <p class="date">{{ postlist.date }}</p>
+      <p class="date">{{ post.date }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'Post',
   props: {
-    postlist: Object,
-  }
-}
+    post: Object,
+    index: Number,
+  },
+  methods: {
+    ...mapMutations(['좋아요토글']),
+  },
+};
 </script>
